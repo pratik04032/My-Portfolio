@@ -1,0 +1,6 @@
+{
+  "name": "Developer Portfolio Template",
+  "description": "Responsive, customizable personal developer portfolio template with centralized placeholders for personal details, skills, projects, and social links, ready for Vercel and GitHub Pages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

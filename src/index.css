@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ============================================================================
+ * PORTFOLIO COLOR THEMES (CSS VARIABLES)
+ * Switch themes via CustomizeDrawer or set data-theme="..." on <html>
+ * ============================================================================ */
+
+:root,
+:root[data-theme="cobalt"] {
+  --theme-canvas: #F9FBFD;
+  --theme-surface: #FFFFFF;
+  --theme-surface-subtle: #F2F6FB;
+  --theme-track: #EAF0F8;
+  --theme-ink: #0E2431;
+  --theme-ink-muted: #4A6070;
+  --theme-accent: #3E6FF4;
+  --theme-accent-hover: #2B59D9;
+  --theme-accent-text: #2F5FE0;
+  --theme-on-accent: #FFFFFF;
+  --theme-hairline: #E2EAF2;
+  --theme-border-strong: #D4E0EC;
+  --theme-footer-bg: #0E2431;
+  --theme-footer-text: #E2E8F0;
+  --theme-footer-muted: #94A3B8;
+  --theme-footer-accent: #7EA3FF;
+}
+
+:root[data-theme="emerald"] {
+  --theme-canvas: #F7FAF9;
+  --theme-surface: #FFFFFF;
+  --theme-surface-subtle: #EEF5F2;
+  --theme-track: #E2EFE9;
+  --theme-ink: #0D241E;
+  --theme-ink-muted: #46615A;
+  --theme-accent: #0F766E;
+  --theme-accent-hover: #0B5D57;
+  --theme-accent-text: #0F766E;
+  --theme-on-accent: #FFFFFF;
+  --theme-hairline: #DCE8E3;
+  --theme-border-strong: #C5D9D1;
+  --theme-footer-bg: #0D241E;
+  --theme-footer-text: #E2ECE9;
+  --theme-footer-muted: #94AEA6;
+  --theme-footer-accent: #5EEAD4;
+}
+
+:root[data-theme="cinnabar"] {
+  --theme-canvas: #FAFAFA;
+  --theme-surface: #FFFFFF;
+  --theme-surface-subtle: #F4F4F6;
+  --theme-track: #EAEAEF;
+  --theme-ink: #141418;
+  --theme-ink-muted: #52525E;
+  --theme-accent: #C81E3A;
+  --theme-accent-hover: #A5162E;
+  --theme-accent-text: #C81E3A;
+  --theme-on-accent: #FFFFFF;
+  --theme-hairline: #E4E4E9;
+  --theme-border-strong: #D1D1DA;
+  --theme-footer-bg: #141418;
+  --theme-footer-text: #ECECEF;
+  --theme-footer-muted: #9E9EA9;
+  --theme-footer-accent: #FB7185;
+}
+
+:root[data-theme="obsidian"] {
+  --theme-canvas: #0B111A;
+  --theme-surface: #111A27;
+  --theme-surface-subtle: #162233;
+  --theme-track: #1F2E45;
+  --theme-ink: #F1F5F9;
+  --theme-ink-muted: #9FB0C4;
+  --theme-accent: #2F63EB;
+  --theme-accent-hover: #2452CC;
+  --theme-accent-text: #7EA3FF;
+  --theme-on-accent: #FFFFFF;
+  --theme-hairline: #1F2D42;
+  --theme-border-strong: #2E415E;
+  --theme-footer-bg: #070B11;
+  --theme-footer-text: #E2E8F0;
+  --theme-footer-muted: #94A3B8;
+  --theme-footer-accent: #7EA3FF;
+}
+
+:root[data-theme="graphite"] {
+  --theme-canvas: #101114;
+  --theme-surface: #17191E;
+  --theme-surface-subtle: #1E2128;
+  --theme-track: #282C36;
+  --theme-ink: #F4F4F6;
+  --theme-ink-muted: #A3A7B3;
+  --theme-accent: #EAB308;
+  --theme-accent-hover: #CA9A04;
+  --theme-accent-text: #FACC15;
+  --theme-on-accent: #101114;
+  --theme-hairline: #252831;
+  --theme-border-strong: #363B48;
+  --theme-footer-bg: #090A0C;
+  --theme-footer-text: #E4E4E7;
+  --theme-footer-muted: #A1A1AA;
+  --theme-footer-accent: #FACC15;
+}
+
+@theme inline {
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-canvas: var(--theme-canvas);
+  --color-surface: var(--theme-surface);
+  --color-surface-subtle: var(--theme-surface-subtle);
+  --color-track: var(--theme-track);
+  --color-ink: var(--theme-ink);
+  --color-ink-muted: var(--theme-ink-muted);
+  --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
+  --color-accent-text: var(--theme-accent-text);
+  --color-on-accent: var(--theme-on-accent);
+  --color-hairline: var(--theme-hairline);
+  --color-border-strong: var(--theme-border-strong);
+  --color-footer-bg: var(--theme-footer-bg);
+  --color-footer-text: var(--theme-footer-text);
+  --color-footer-muted: var(--theme-footer-muted);
+  --color-footer-accent: var(--theme-footer-accent);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

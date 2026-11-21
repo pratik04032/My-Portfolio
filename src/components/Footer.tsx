@@ -54,6 +54,8 @@ export function Footer({ config, onOpenCustomizer }: FooterProps) {
                 { label: 'About', href: '#about' },
                 { label: 'Skills', href: '#skills' },
                 { label: 'Projects', href: '#work' },
+                { label: 'Experience', href: '#experience' },
+                { label: 'Education & Certs', href: '#credentials' },
                 { label: 'Contact', href: '#contact' },
               ].map((link) => (
                 <li key={link.label}>
@@ -92,6 +94,45 @@ export function Footer({ config, onOpenCustomizer }: FooterProps) {
                 );
               })}
             </ul>
+
+            <div className="pt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-footer-muted">
+              {config.social.leetcode && (
+                <a
+                  href={config.social.leetcode}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  LeetCode
+                </a>
+              )}
+              {config.social.codechef && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <a
+                    href={config.social.codechef}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    CodeChef
+                  </a>
+                </>
+              )}
+              {config.social.hackerrank && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <a
+                    href={config.social.hackerrank}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    HackerRank
+                  </a>
+                </>
+              )}
+            </div>
           </div>
         </div>
 

@@ -6,7 +6,9 @@
 import { useEffect, useState } from 'react';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
+import { Credentials } from './components/Credentials';
 import { CustomizeDrawer } from './components/CustomizeDrawer';
+import { Experience } from './components/Experience';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -18,13 +20,39 @@ import {
   PortfolioConfig,
 } from './config/portfolioConfig';
 
-const STORAGE_KEY = 'portfolio_custom_config_v1';
-const SECTION_IDS = ['home', 'about', 'skills', 'work', 'contact'];
+const STORAGE_KEY = 'portfolio_custom_config_v2';
+const LEGACY_STORAGE_KEY = 'portfolio_custom_config_v1';
+const SECTION_IDS = [
+  'home',
+  'about',
+  'skills',
+  'work',
+  'experience',
+  'credentials',
+  'contact',
+];
 
 function loadSavedConfig(): PortfolioConfig {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return DEFAULT_PORTFOLIO_CONFIG;
+    if (!raw) {
+      // Carry forward previously chosen color theme from v1 if present
+      const legacyRaw = window.localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (legacyRaw) {
+        const legacy = JSON.parse(legacyRaw) as Partial<PortfolioConfig>;
+        if (legacy.theme) {
+          return {
+            ...DEFAULT_PORTFOLIO_CONFIG,
+            theme: {
+              ...DEFAULT_PORTFOLIO_CONFIG.theme,
+              ...legacy.theme,
+            },
+          };
+        }
+      }
+      return DEFAULT_PORTFOLIO_CONFIG;
+    }
+
     const parsed = JSON.parse(raw) as Partial<PortfolioConfig>;
     return {
       ...DEFAULT_PORTFOLIO_CONFIG,
@@ -36,25 +64,19 @@ function loadSavedConfig(): PortfolioConfig {
       personal: {
         ...DEFAULT_PORTFOLIO_CONFIG.personal,
         ...(parsed.personal || {}),
-        fullName:
-          !parsed.personal?.fullName ||
-          parsed.personal.fullName === 'Your Full Name'
-            ? DEFAULT_PORTFOLIO_CONFIG.personal.fullName
-            : parsed.personal.fullName,
-        shortName:
-          !parsed.personal?.shortName ||
-          parsed.personal.shortName === 'Your Name'
-            ? DEFAULT_PORTFOLIO_CONFIG.personal.shortName
-            : parsed.personal.shortName,
-        heroImage:
-          !parsed.personal?.heroImage ||
-          parsed.personal.heroImage.includes('hero_developer_portrait_1795074343024')
-            ? DEFAULT_PORTFOLIO_CONFIG.personal.heroImage
-            : parsed.personal.heroImage,
+        aboutImage:
+          !parsed.personal?.aboutImage ||
+          parsed.personal.aboutImage.includes('about_workspace_editorial')
+            ? DEFAULT_PORTFOLIO_CONFIG.personal.aboutImage
+            : parsed.personal.aboutImage,
       },
       social: {
         ...DEFAULT_PORTFOLIO_CONFIG.social,
         ...(parsed.social || {}),
+      },
+      experienceSection: {
+        ...DEFAULT_PORTFOLIO_CONFIG.experienceSection,
+        ...(parsed.experienceSection || {}),
       },
       skillsSection: {
         ...DEFAULT_PORTFOLIO_CONFIG.skillsSection,
@@ -63,6 +85,10 @@ function loadSavedConfig(): PortfolioConfig {
       projectsSection: {
         ...DEFAULT_PORTFOLIO_CONFIG.projectsSection,
         ...(parsed.projectsSection || {}),
+      },
+      credentialsSection: {
+        ...DEFAULT_PORTFOLIO_CONFIG.credentialsSection,
+        ...(parsed.credentialsSection || {}),
       },
       contactSection: {
         ...DEFAULT_PORTFOLIO_CONFIG.contactSection,
@@ -144,11 +170,15 @@ export default function App() {
           highlights={config.highlights}
         />
 
-        <About personal={config.personal} />
+        <About personal={config.personal} social={config.social} />
 
         <Skills skillsSection={config.skillsSection} />
 
         <Projects projectsSection={config.projectsSection} />
+
+        <Experience experienceSection={config.experienceSection} />
+
+        <Credentials credentialsSection={config.credentialsSection} />
 
         <Contact
           personal={config.personal}

@@ -1,14 +1,10 @@
 /**
  * ============================================================================
- * PORTFOLIO CONFIGURATION — EDIT THIS SINGLE FILE TO PERSONALIZE YOUR SITE
+ * PORTFOLIO CONFIGURATION — SINGLE SOURCE OF TRUTH
  * ============================================================================
  *
- * Replace the placeholder values below with your own personal information,
- * skills, project descriptions, and social media links.
- *
- * Tip: You can also click "Customize Template" in the website footer to edit
- * these fields live in your browser and copy the generated TypeScript code
- * straight back into this file.
+ * Populated from Pratik Kumar Jena's resume. Edit any field below or click
+ * "Customize Placeholders & Theme" in the footer to preview changes live.
  */
 
 export type SkillIconKey =
@@ -28,7 +24,7 @@ export type SkillIconKey =
   | 'tensorflow'
   | 'data';
 
-export type ProjectCategory = 'AI & ML' | 'Full-Stack' | 'Computer Vision';
+export type ProjectCategory = 'Data Analytics' | 'AI & ML' | 'Computer Vision';
 
 export interface SkillItem {
   name: string;
@@ -57,6 +53,33 @@ export interface ProjectItem {
   techStack: string[];
   githubUrl: string;
   liveUrl: string;
+}
+
+export interface ExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  mode: string;
+  period: string;
+  summary: string;
+  highlights: string[];
+}
+
+export interface EducationItem {
+  id: string;
+  institution: string;
+  degree: string;
+  location: string;
+  period: string;
+  grade: string;
+  coursework: string[];
+}
+
+export interface CertificationItem {
+  id: string;
+  title: string;
+  issuer: string;
+  category: string;
 }
 
 export interface HighlightMetric {
@@ -257,49 +280,42 @@ export const THEME_PRESETS: ThemePresetMeta[] = [
 ];
 
 export interface PortfolioThemeConfig {
-  /** Active preset from THEME_PRESETS ('cobalt' | 'emerald' | 'cinnabar' | 'obsidian' | 'graphite') */
   preset: ThemePresetId;
-  /** Optional custom hex override for --theme-accent (leave empty string "" to use preset default) */
   customAccent?: string;
 }
 
 export interface PortfolioConfig {
   theme: PortfolioThemeConfig;
   personal: {
-    /** Full name shown in the navigation bar, footer, and page title */
     fullName: string;
-    /** First name or nickname highlighted in the hero headline ("Hi, I'm ...") */
     shortName: string;
-    /** Primary role/title shown in the hero headline */
     role: string;
-    /** Short one-line tagline shown in the hero & footer */
     tagline: string;
-    /** Your city / country */
     location: string;
-    /** Degree, university, or current title */
     education: string;
-    /** Core specialization summary */
     specialization: string;
-    /** Availability text (e.g., "Open to Full-Time & Freelance Roles") */
     availability: string;
-    /** Your public contact email */
     email: string;
-    /** Optional link to your hosted resume PDF (leave empty string "" to hide) */
+    phone: string;
     resumeUrl: string;
-    /** Hero portrait image path (replace with "/your-photo.jpg" in /public) */
     heroImage: string;
-    /** About section workspace or second photo path */
     aboutImage: string;
-    /** Bio paragraphs rendered in the About section */
     aboutParagraphs: string[];
   };
-  /** 4 concise proof points shown in a clean row directly beneath the Hero */
   highlights: HighlightMetric[];
   social: {
     linkedin: string;
     github: string;
     twitter: string;
     email: string;
+    leetcode?: string;
+    codechef?: string;
+    hackerrank?: string;
+  };
+  experienceSection: {
+    subtitle: string;
+    description: string;
+    items: ExperienceItem[];
   };
   skillsSection: {
     subtitle: string;
@@ -313,14 +329,13 @@ export interface PortfolioConfig {
     pillars: string[];
     projects: ProjectItem[];
   };
+  credentialsSection: {
+    education: EducationItem[];
+    certifications: CertificationItem[];
+  };
   contactSection: {
     subtitle: string;
     description: string;
-    /**
-     * Create a free form at https://formspree.io and paste your endpoint below,
-     * e.g. "https://formspree.io/f/yourFormId".
-     * While left as the placeholder, the form runs in local preview mode.
-     */
     formspreeEndpoint: string;
     successTitle: string;
     successMessage: string;
@@ -338,220 +353,321 @@ export const DEFAULT_PORTFOLIO_CONFIG: PortfolioConfig = {
   personal: {
     fullName: 'Pratik Kumar Jena',
     shortName: 'Pratik',
-    role: 'AI/ML Engineer & Full-Stack Developer',
-    tagline: 'Building intelligent web applications and scalable software systems.',
-    location: 'Your City, Country',
-    education: 'B.Tech in Computer Science (Update in config)',
-    specialization: 'Full-Stack Web & Applied AI',
-    availability: 'Open to Software Engineering Opportunities',
-    email: 'your.email@example.com',
-    resumeUrl: '',
+    role: 'Frontend Web Developer & AI/ML Engineer',
+    tagline:
+      'Computer Science (AI & ML) undergraduate crafting responsive web applications, interactive Power BI & Streamlit dashboards, and applied machine learning systems.',
+    location: 'Balasore / Bhubaneswar, Odisha, India',
+    education: 'B.Tech in Computer Science (AI & ML) — Trident Academy of Technology (CGPA: 7.32)',
+    specialization: 'Frontend Web Development, Data Analytics & Applied AI/ML',
+    availability: 'B.Tech CSE (AI & ML) · Open to Frontend, Data & AI/ML Roles',
+    email: 'pratikkumarjena04@gmail.com',
+    phone: '+91 8456053237',
+    resumeUrl: '/assets/aistudio/Jena_Pratik_Kumar_e05fdd4a.pdf',
     heroImage: '/assets/aistudio/image_0ff103f2.png',
-    aboutImage: '/src/assets/images/about_workspace_editorial_1795074341412.jpg',
+    aboutImage: '/assets/aistudio/image_0ff103f2.png',
     aboutParagraphs: [
-      'I am a Computer Science undergraduate and software developer with hands-on experience in full-stack web development and applied artificial intelligence. Replace this paragraph in src/config/portfolioConfig.ts with your own story, background, and technical strengths.',
-      'My recent work spans AI-powered products such as voice-enabled assistants, document OCR scanners, and sentiment analysis dashboards alongside responsive React, TypeScript, Node.js, and Python backend architectures.',
-      'I enjoy collaborating with product-focused engineering teams where clean software architecture meets practical real-world problem solving.',
+      'I am Pratik Kumar Jena, a B.Tech Computer Science (AI & ML) undergraduate at Trident Academy of Technology, Bhubaneswar (Dec 2022 – May 2026, CGPA 7.32), focused on Frontend Web Development, Data Analytics, and Applied Machine Learning.',
+      'Across internships at BLUESTOCK.in and Cognifyz Technologies, I have delivered responsive HTML/CSS/JavaScript interfaces with live API integration, interactive Power BI investment dashboards, and modular C/C++ console software.',
+      'My technical projects span financial ETL analytics comparing crypto, oil, and stock markets, global literacy research, forest cover and diamond market ML modeling, and deep-learning aerial object detection using CNNs and YOLOv8.',
     ],
   },
 
   highlights: [
     {
-      label: 'Featured Projects',
-      value: '06+',
-      detail: 'End-to-end web & AI applications',
+      label: 'Internships',
+      value: '04',
+      detail: 'Data Analyst, Power BI, Frontend & C/C++',
     },
     {
-      label: 'Core Disciplines',
-      value: '03',
-      detail: 'Frontend, Backend, and Applied AI',
+      label: 'Projects Built',
+      value: '05',
+      detail: 'Data Analytics, ML & Computer Vision',
     },
     {
-      label: 'Primary Stack',
-      value: 'React · Python',
-      detail: 'TypeScript, Node.js, FastAPI, SQL',
+      label: 'Certifications',
+      value: '05',
+      detail: 'NIELIT, Infosys, Cognitive Classes & HackerRank',
     },
     {
-      label: 'Current Focus',
-      value: 'Open to Work',
-      detail: 'Internships, full-time & freelance',
+      label: 'Academic CGPA',
+      value: '7.32',
+      detail: 'B.Tech CSE (AI & ML), 2022–2026',
     },
   ],
 
   social: {
-    linkedin: 'https://www.linkedin.com/in/your-linkedin-username',
-    github: 'https://github.com/your-github-username',
-    twitter: 'https://x.com/your-handle',
-    email: 'mailto:your.email@example.com',
+    linkedin: 'https://www.linkedin.com/in/pratik-kumar-jena-1823b3242/',
+    github: 'https://github.com/pratik04032',
+    twitter: '',
+    email: 'mailto:pratikkumarjena04@gmail.com',
+    leetcode: 'https://leetcode.com/u/J1M63OBc03/',
+    codechef: 'https://www.codechef.com/dashboard',
+    hackerrank: 'https://www.hackerrank.com/profile/guddubhaiya',
+  },
+
+  experienceSection: {
+    subtitle: 'Work Experience & Internships',
+    description:
+      'Hands-on industry internships across data analytics, business intelligence visualization, responsive frontend engineering, and core C/C++ programming.',
+    items: [
+      {
+        id: 'bluestock-data-analyst',
+        role: 'Data Analyst',
+        company: 'BLUESTOCK.in',
+        mode: 'Remote (WFH)',
+        period: 'April 2026 – May 2026',
+        summary:
+          'Remote data analytics engagement focused on financial dataset exploration, structured reporting, and actionable market insights.',
+        highlights: [
+          'Analyzed structured financial datasets to surface trends and performance metrics for decision support.',
+          'Applied Python, SQL, and dashboarding workflows to clean, validate, and communicate analytical findings.',
+        ],
+      },
+      {
+        id: 'cognifyz-powerbi',
+        role: 'Power BI Developer',
+        company: 'Cognifyz Technologies',
+        mode: 'Work From Home',
+        period: 'June 2025 – August 2025',
+        summary:
+          'Built end-to-end interactive Power BI dashboards and performed statistical exploration on investment behavior datasets.',
+        highlights: [
+          'Performed data exploration and statistical analysis using Power BI to uncover investment trends and user behavior patterns.',
+          'Designed interactive KPI dashboards with dynamic charts and filters for gender-based and objective-driven analysis.',
+          'Analyzed investment duration, frequency, decision factors, and financial information sources to deliver executive reports and project showcases.',
+        ],
+      },
+      {
+        id: 'cognifyz-frontend',
+        role: 'Front-end Developer',
+        company: 'Cognifyz Technologies',
+        mode: 'Work From Home',
+        period: 'August 2024 – September 2024',
+        summary:
+          'Developed responsive, interactive websites with semantic HTML, modular CSS/Sass, Bootstrap, JavaScript DOM workflows, and external APIs.',
+        highlights: [
+          'Built foundational responsive pages using semantic HTML5, external stylesheets, CSS media queries, Bootstrap, and Sass preprocessing.',
+          'Implemented interactive UI controls, DOM manipulation, and external API integration to render real-time data dynamically.',
+          'Designed accessible forms with client-side validation to improve user experience and ensure data integrity.',
+        ],
+      },
+      {
+        id: 'cognifyz-cpp',
+        role: 'C/C++ Developer',
+        company: 'Cognifyz Technologies',
+        mode: 'Work From Home',
+        period: 'January 2024 – February 2024',
+        summary:
+          'Built modular console-based applications in C/C++ strengthening core algorithms, memory pointers, and file I/O fundamentals.',
+        highlights: [
+          'Implemented string reversal, palindrome checking, Fibonacci generation, calculator utilities, and a file copy utility.',
+          'Developed array-based sorting algorithms (bubble and selection sort), a grade calculator, Rock-Paper-Scissors, and a console inventory system.',
+          'Applied arrays, pointers, functions, and structured control flows for clean, maintainable code.',
+        ],
+      },
+    ],
   },
 
   skillsSection: {
-    subtitle: 'Professional Skills',
+    subtitle: 'Technical Skills',
     description:
-      'Proficient across the full software development lifecycle from architecture to production deployment. Update these skill names and proficiency levels inside src/config/portfolioConfig.ts.',
-    pillars: ['Clean Architecture', 'Scalable Systems', 'Performance Focused'],
+      'Core competencies across frontend web engineering, programming languages, SQL databases, data analytics, and deep learning workflows.',
+    pillars: ['Responsive Frontend', 'Data & SQL Analytics', 'Applied AI & ML'],
     categories: [
       {
         id: 'frontend',
         indexLabel: '01',
-        title: 'Frontend Development',
-        caption: 'Responsive interfaces, accessible design systems, and modern React architectures.',
+        title: 'Languages & Frontend',
+        caption: 'Semantic web interfaces, React components, responsive styling, and foundational languages.',
         image: '/src/assets/images/skills_frontend_visual_1795074340636.jpg',
         imageAlt: 'Frontend interface architecture workspace',
         skills: [
-          { name: 'HTML5 & Semantic Markup', level: 90, icon: 'html' },
-          { name: 'CSS3 & Tailwind CSS', level: 85, icon: 'css' },
-          { name: 'JavaScript (ES6+) / TypeScript', level: 82, icon: 'javascript' },
-          { name: 'React & Component Architecture', level: 78, icon: 'react' },
-          { name: 'UI/UX & Responsive Design', level: 75, icon: 'design' },
+          { name: 'HTML5, CSS3, Sass & Bootstrap', level: 92, icon: 'html' },
+          { name: 'JavaScript (ES6+)', level: 86, icon: 'javascript' },
+          { name: 'React', level: 82, icon: 'react' },
+          { name: 'Python', level: 88, icon: 'python' },
+          { name: 'C / C++ & Java', level: 80, icon: 'design' },
         ],
       },
       {
         id: 'backend',
         indexLabel: '02',
-        title: 'Backend & Databases',
-        caption: 'Reliable REST APIs, authentication pipelines, and relational/NoSQL data modeling.',
+        title: 'Databases, Platforms & Security',
+        caption: 'Relational SQL analytics, cloud deployment platforms, networking, and security practices.',
         image: '/src/assets/images/skills_backend_visual_1795074341149.jpg',
         imageAlt: 'Backend server and modular database architecture',
         skills: [
-          { name: 'Node.js & Express', level: 78, icon: 'node' },
-          { name: 'Python & FastAPI', level: 82, icon: 'python' },
-          { name: 'MongoDB & Document Stores', level: 72, icon: 'database' },
-          { name: 'SQL & PostgreSQL', level: 75, icon: 'sql' },
-          { name: 'REST API Design', level: 80, icon: 'api' },
+          { name: 'SQL & MySQL', level: 85, icon: 'sql' },
+          { name: 'Power BI & Streamlit Dashboards', level: 88, icon: 'data' },
+          { name: 'GitHub, Netlify & Vercel', level: 84, icon: 'api' },
+          { name: 'Computer Networking & Log Analysis', level: 76, icon: 'node' },
+          { name: 'Web Security Fundamentals', level: 74, icon: 'database' },
         ],
       },
       {
         id: 'aiml',
         indexLabel: '03',
-        title: 'AI & Machine Learning',
-        caption: 'Applied NLP, computer vision pipelines, data analysis, and model integration.',
+        title: 'AI, Machine Learning & Data Science',
+        caption: 'End-to-end EDA, predictive modeling, clustering, CNN transfer learning, and YOLOv8 vision.',
         image: '/src/assets/images/skills_aiml_visual_1795074339917.jpg',
         imageAlt: 'Neural network geometry and optical data visualization',
         skills: [
-          { name: 'Applied Artificial Intelligence', level: 72, icon: 'ai' },
-          { name: 'Machine Learning', level: 68, icon: 'ml' },
-          { name: 'Natural Language Processing', level: 65, icon: 'nlp' },
-          { name: 'TensorFlow & Model Serving', level: 62, icon: 'tensorflow' },
-          { name: 'Pandas & Data Processing', level: 76, icon: 'data' },
+          { name: 'Data Analysis (Pandas & NumPy)', level: 90, icon: 'data' },
+          { name: 'Scikit-Learn, XGBoost & SMOTE', level: 84, icon: 'ml' },
+          { name: 'TensorFlow / Keras & PyTorch', level: 78, icon: 'tensorflow' },
+          { name: 'Computer Vision (CNN & YOLOv8)', level: 80, icon: 'ai' },
+          { name: 'Visualization (Matplotlib, Seaborn, Plotly)', level: 86, icon: 'nlp' },
         ],
       },
     ],
   },
 
   projectsSection: {
-    subtitle: 'Selected Projects',
+    subtitle: 'Projects & Open-Source',
     description:
-      'A curated collection of placeholder projects based on the original portfolio template. Replace the titles, descriptions, tech stacks, and GitHub/Live URLs with your own work.',
-    pillars: ['AI-Powered', 'Insightful', 'Production Ready'],
+      'End-to-end data analytics, machine learning, and computer vision applications built with Python, SQL, Power BI, TensorFlow, PyTorch, and Streamlit.',
+    pillars: ['ETL & SQL Analytics', 'Machine Learning', 'Deep Learning Vision'],
     projects: [
       {
-        id: 'voice-assistant',
-        title: 'AI Powered Voice Assistant',
-        category: 'AI & ML',
+        id: 'cross-market-analysis',
+        title: 'Cross Market Analysis: Crypto, Oil & Stocks',
+        category: 'Data Analytics',
         year: '2026',
         summary:
-          'A voice-enabled personal assistant powered by NLP and speech recognition, capable of executing tasks, answering questions, and integrating with external APIs.',
+          'A financial BI and analytics platform comparing cryptocurrencies, oil prices, and stock market indices via live API ETL pipelines, SQL queries, and Streamlit.',
         details:
-          'Designed with a low-latency Python FastAPI backend and a clean browser interface, this project converts real-time speech into structured commands, performs intent classification, and returns natural spoken responses.',
+          'Collects cryptocurrency metrics from CoinGecko API, stock data via Yahoo Finance API, and historical oil price CSV datasets. Transforms data with Pandas into a normalized relational SQL database (MySQL/PostgreSQL/SQLite) for trend, volatility, and cross-market join analysis.',
         highlights: [
-          'Real-time speech-to-text capture and intent routing',
-          'Modular plugin design for weather, calendar, and search APIs',
-          'Responsive web frontend with live transcript history',
+          'Built end-to-end ETL pipeline integrating CoinGecko API, Yahoo Finance API, and oil market CSV datasets',
+          'Designed relational database schemas with keys, joins, and query optimization for volatility and trend analytics',
+          'Deployed an interactive Streamlit dashboard enabling dynamic filters, SQL exploration, and price comparison charts',
         ],
-        techStack: ['Python', 'NLP', 'Speech Recognition', 'FastAPI'],
-        githubUrl: 'https://github.com/your-github-username/ai-voice-assistant',
-        liveUrl: 'https://your-demo-link-1.vercel.app',
+        techStack: ['Python', 'SQL', 'Streamlit', 'Pandas', 'CoinGecko API', 'Yahoo Finance API'],
+        githubUrl: 'https://github.com/pratik04032',
+        liveUrl: 'https://drive.google.com/drive/folders/1S0dO3SjbFba6WEUcrZheYxzThQ-DmEnH',
       },
       {
-        id: 'bill-scanner',
-        title: 'Intelligent Bill Scanner',
+        id: 'global-literacy-trends',
+        title: 'Global Literacy & Education Trends',
+        category: 'Data Analytics',
+        year: '2025',
+        summary:
+          'An analytical study investigating global literacy rates against socio-economic indicators like GDP and years of schooling across countries.',
+        details:
+          'Combines Python data processing, MySQL analytical queries, Power BI dashboards, and Streamlit web views to surface educational disparities, regional patterns, and policy-relevant correlations.',
+        highlights: [
+          'Cleaned and merged global literacy, GDP, and schooling datasets with Pandas and NumPy',
+          'Authored SQL analytical queries in MySQL to uncover cross-country correlations and regional gaps',
+          'Delivered interactive visual narratives using Power BI, Plotly, Seaborn, Matplotlib, and Streamlit',
+        ],
+        techStack: ['Python', 'MySQL', 'Power BI', 'Streamlit', 'Pandas', 'Plotly'],
+        githubUrl: 'https://github.com/pratik04032',
+        liveUrl: 'https://drive.google.com/drive/folders/1S0dO3SjbFba6WEUcrZheYxzThQ-DmEnH',
+      },
+      {
+        id: 'ecotype-forest-cover',
+        title: 'EcoType: Forest Cover Classification',
+        category: 'AI & ML',
+        year: '2025',
+        summary:
+          'A multi-class machine learning classification system predicting forest cover types from geographical and environmental features like elevation, soil type, and slope.',
+        details:
+          'Evaluates Random Forest, Decision Tree, Logistic Regression, KNN, and XGBoost classifiers with SMOTE class-imbalance handling, serialized via Pickle/Joblib and served through a Streamlit interface for ecological and wildfire planning.',
+        highlights: [
+          'Handled imbalanced environmental classes using Imbalanced-learn (SMOTE) and targeted feature engineering',
+          'Benchmarked Random Forest, Decision Tree, Logistic Regression, KNN, and XGBoost classifiers',
+          'Persisted best-performing pipelines with Pickle/Joblib and deployed interactive predictions on Streamlit',
+        ],
+        techStack: ['Python', 'Scikit-learn', 'XGBoost', 'SMOTE', 'Pandas', 'Streamlit'],
+        githubUrl: 'https://github.com/pratik04032',
+        liveUrl: 'https://drive.google.com/drive/folders/1S0dO3SjbFba6WEUcrZheYxzThQ-DmEnH',
+      },
+      {
+        id: 'diamond-dynamics',
+        title: 'Diamond Dynamics: Price & Market Segmentation',
+        category: 'AI & ML',
+        year: '2025',
+        summary:
+          'A dual regression and clustering platform that predicts diamond prices from carat, cut, color, clarity, and dimensions while segmenting market tiers.',
+        details:
+          'Combines EDA, outlier handling, feature selection, Artificial Neural Networks (TensorFlow/Keras), and ensemble regressors evaluated on MAE/MSE/RMSE/R², alongside K-Means, DBSCAN/Hierarchical clustering, and PCA dimensionality reduction.',
+        highlights: [
+          'Trained Linear Regression, Random Forest, Decision Tree, XGBoost, KNN, and an ANN for high-accuracy price estimation',
+          'Segmented diamonds into actionable market tiers using K-Means, DBSCAN, and PCA visualization',
+          'Deployed a Streamlit app where users enter diamond specs to receive instant price estimates and market segment labels',
+        ],
+        techStack: ['Python', 'TensorFlow / Keras', 'Scikit-learn', 'XGBoost', 'K-Means & PCA', 'Streamlit'],
+        githubUrl: 'https://github.com/pratik04032',
+        liveUrl: 'https://drive.google.com/drive/folders/1S0dO3SjbFba6WEUcrZheYxzThQ-DmEnH',
+      },
+      {
+        id: 'aerial-object-detection',
+        title: 'Aerial Object Classification & Detection',
         category: 'Computer Vision',
         year: '2026',
         summary:
-          'An OCR-based expense platform that scans receipts, extracts merchant and line-item data using computer vision, and builds monthly spending analytics.',
+          'A deep-learning computer vision system classifying aerial images as Bird or Drone with optional real-time YOLOv8 bounding-box localization.',
         details:
-          'Uses OpenCV preprocessing (deskewing, adaptive thresholding) paired with OCR extraction to turn photographed paper receipts into categorized, exportable expense records.',
+          'Preprocesses and augments aerial datasets (rotation, flipping, zooming, brightness) to train a custom CNN alongside transfer-learning backbones (ResNet50, MobileNet, EfficientNet) with EarlyStopping and ModelCheckpoint callbacks.',
         highlights: [
-          'Automated receipt image enhancement and boundary detection',
-          'Structured extraction of vendor, date, tax, and totals',
-          'Monthly spending breakdown and CSV export support',
+          'Trained custom CNN and transfer learning architectures (ResNet50, MobileNet, EfficientNet) in TensorFlow/Keras and PyTorch',
+          'Integrated optional YOLOv8 object detection for real-time bounding boxes alongside confusion matrix & F1-score evaluation',
+          'Deployed an interactive Streamlit web app returning Bird vs. Drone predictions with confidence scores',
         ],
-        techStack: ['Python', 'OpenCV', 'Tesseract OCR', 'React'],
-        githubUrl: 'https://github.com/your-github-username/intelligent-bill-scanner',
-        liveUrl: 'https://your-demo-link-2.vercel.app',
+        techStack: ['Python', 'PyTorch', 'TensorFlow / Keras', 'YOLOv8', 'Transfer Learning', 'Streamlit'],
+        githubUrl: 'https://github.com/pratik04032',
+        liveUrl: 'https://drive.google.com/drive/folders/1S0dO3SjbFba6WEUcrZheYxzThQ-DmEnH',
+      },
+    ],
+  },
+
+  credentialsSection: {
+    education: [
+      {
+        id: 'trident-btech',
+        institution: 'Trident Academy of Technology',
+        degree: 'B.Tech in Computer Science (AI & ML)',
+        location: 'Bhubaneswar, Odisha',
+        period: 'December 2022 – May 2026',
+        grade: 'CGPA: 7.32',
+        coursework: [
+          'Artificial Intelligence & Machine Learning',
+          'Data Analysis & Database Systems (SQL / MySQL)',
+          'Web Development & Frontend Engineering',
+          'Computer Networking & Web Security',
+        ],
+      },
+    ],
+    certifications: [
+      {
+        id: 'cert-micropython',
+        title: 'Micro Python for Beginners',
+        issuer: 'NIELIT, Calicut',
+        category: 'Python & Embedded',
       },
       {
-        id: 'sentiment-analysis',
-        title: 'Customer Sentiment Analyzer',
-        category: 'AI & ML',
-        year: '2025',
-        summary:
-          'An analytics dashboard that classifies customer reviews and support tickets into actionable sentiment trends, topic clusters, and priority alerts.',
-        details:
-          'Processes bulk CSV uploads or live feedback text using transformer-based NLP classification, visualizing positive, neutral, and negative momentum over time.',
-        highlights: [
-          'Batch CSV processing with confidence score breakdown',
-          'Keyword and topic extraction for root-cause discovery',
-          'Clean executive summary view for product teams',
-        ],
-        techStack: ['Python', 'Scikit-Learn', 'Pandas', 'React'],
-        githubUrl: 'https://github.com/your-github-username/sentiment-analyzer',
-        liveUrl: 'https://your-demo-link-3.vercel.app',
+        id: 'cert-infosys-ai',
+        title: 'Artificial Intelligence: Types of Artificial Intelligence',
+        issuer: 'Infosys Springboard',
+        category: 'Artificial Intelligence',
       },
       {
-        id: 'smart-study-hub',
-        title: 'Developer Task & Notes Workspace',
-        category: 'Full-Stack',
-        year: '2025',
-        summary:
-          'A minimalist full-stack productivity workspace combining markdown technical notes, sprint task boards, and instant keyboard-first search.',
-        details:
-          'Built for engineering students and solo developers to organize project specs, track daily milestones, and search across code snippets with minimal friction.',
-        highlights: [
-          'Fast markdown editor with live preview and syntax highlighting',
-          'Filterable sprint task columns with keyboard shortcuts',
-          'Responsive layout optimized for both desktop and mobile screens',
-        ],
-        techStack: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
-        githubUrl: 'https://github.com/your-github-username/developer-workspace',
-        liveUrl: 'https://your-demo-link-4.vercel.app',
+        id: 'cert-prompt-eng',
+        title: 'Prompt Engineering for Everyone',
+        issuer: 'Cognitive Classes',
+        category: 'Generative AI',
       },
       {
-        id: 'medical-management',
-        title: 'Medical Management System',
-        category: 'Full-Stack',
-        year: '2025',
-        summary:
-          'A comprehensive healthcare management platform featuring patient records, appointment scheduling, and an operational dashboard for clinics.',
-        details:
-          'Provides role-separated views for doctors and administrative staff, enforcing clean validation, structured patient history timelines, and appointment conflict prevention.',
-        highlights: [
-          'Role-based dashboards for doctors, receptionists, and patients',
-          'Interactive appointment scheduling with slot availability checks',
-          'Structured medical history and prescription records',
-        ],
-        techStack: ['MERN Stack', 'MongoDB', 'React', 'Node.js'],
-        githubUrl: 'https://github.com/your-github-username/medical-management-system',
-        liveUrl: 'https://your-demo-link-5.vercel.app',
+        id: 'cert-java-basic',
+        title: 'Java (Basic)',
+        issuer: 'HackerRank',
+        category: 'Programming',
       },
       {
-        id: 'ecommerce-platform',
-        title: 'Full-Stack E-Commerce Platform',
-        category: 'Full-Stack',
-        year: '2025',
-        summary:
-          'A modern storefront with catalog filtering, user authentication, persistent shopping cart, checkout integration, and an inventory admin portal.',
-        details:
-          'Architected with reusable UI primitives, clean API separation, and responsive mobile checkout flows designed for fast page loads and clear conversion paths.',
-        highlights: [
-          'Category and price filtering with instant client-side transitions',
-          'Persistent cart state and multi-step checkout validation',
-          'Admin dashboard for product catalog and order tracking',
-        ],
-        techStack: ['React', 'Node.js', 'MongoDB', 'Stripe API'],
-        githubUrl: 'https://github.com/your-github-username/ecommerce-platform',
-        liveUrl: 'https://your-demo-link-6.vercel.app',
+        id: 'cert-js-basic',
+        title: 'JavaScript (Basic)',
+        issuer: 'HackerRank',
+        category: 'Web Development',
       },
     ],
   },
@@ -559,7 +675,7 @@ export const DEFAULT_PORTFOLIO_CONFIG: PortfolioConfig = {
   contactSection: {
     subtitle: "Let's Work Together",
     description:
-      "I'm open to discussing new opportunities, collaborations, and engineering projects. Have a project in mind or want to connect? Send a message below.",
+      "I'm open to frontend engineering, data analytics, and AI/ML opportunities, internships, and collaborative projects. Feel free to reach out directly or send a message below.",
     formspreeEndpoint: 'https://formspree.io/f/YOUR_FORMSPREE_ID',
     successTitle: 'Message Sent Successfully',
     successMessage:
@@ -586,7 +702,7 @@ function adjustHexBrightness(hex: string, percent: number): string {
 }
 
 /**
- * Computes legible foreground text color (#FFFFFF or #0E1726) for a given accent hex.
+ * Computes legible foreground text color (#FFFFFF or #101114) for a given accent hex.
  */
 function getReadableOnAccent(hex: string): string {
   const clean = hex.replace('#', '');
@@ -690,4 +806,3 @@ export function generatePortfolioConfigSnippet(config: PortfolioConfig): string 
     2
   )};\n`;
 }
-

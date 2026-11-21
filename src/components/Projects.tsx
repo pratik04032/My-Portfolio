@@ -8,8 +8,8 @@ interface ProjectsProps {
 
 const FILTER_OPTIONS: Array<'All' | ProjectCategory> = [
   'All',
+  'Data Analytics',
   'AI & ML',
-  'Full-Stack',
   'Computer Vision',
 ];
 

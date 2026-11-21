@@ -7,11 +7,11 @@ interface HeaderProps {
 }
 
 const NAV_ITEMS = [
-  { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'work', label: 'Projects' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'credentials', label: 'Education' },
 ];
 
 export function Header({ brandName, activeSection }: HeaderProps) {
